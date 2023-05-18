@@ -25,11 +25,6 @@ void PropertySync::setTarget(const QQmlProperty &property)
     m_propertyA.connectNotifySignal(this, SLOT(update()));
 }
 
-void PropertySync::write(const QVariant &value)
-{
-    QQmlPropertyPrivate::write(m_propertyA, value, QQmlPropertyData::BypassInterceptor | QQmlPropertyData::DontRemoveBinding);
-}
-
 void PropertySync::update()
 {
     const auto *sender = QObject::sender();

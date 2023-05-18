@@ -6,14 +6,14 @@
 
 #include <QtCore/QObject>
 #include <QtQml/qqml.h>
-#include <QtQml/private/qqmlpropertyvalueinterceptor_p.h>
+#include <QtQml/QQmlPropertyValueSource>
 #include <QtQml/QQmlProperty>
 
-class PropertySync : public QObject, public QQmlPropertyValueInterceptor
+class PropertySync : public QObject, public QQmlPropertyValueSource
 {
     Q_OBJECT
     QML_ELEMENT
-    Q_INTERFACES(QQmlPropertyValueInterceptor)
+    Q_INTERFACES(QQmlPropertyValueSource)
     Q_PROPERTY(QObject *target MEMBER m_target NOTIFY targetChanged)
     Q_PROPERTY(QString propertyName MEMBER m_propertyName NOTIFY propertyNameChanged)
 
@@ -21,7 +21,6 @@ public:
     explicit PropertySync(QObject *parent = nullptr);
 
     void setTarget(const QQmlProperty &property) override;
-    void write(const QVariant &value) override;
 
 signals:
     void targetChanged();
