@@ -39,11 +39,8 @@ Window {
                     Slider {
                         id: slider
                         to: 99
-//                        value: spinbox.value
                     }
                     SpinBox {
-                        id: spinbox
-//                        value: slider.value
                         PropertySync on value {
                             target: slider
                             propertyName: 'value'
@@ -74,6 +71,7 @@ Window {
             }
             ListView {
                 model: ListModel {
+                    id: model
                     ListElement {
                         name: "Hello"
                     }
@@ -97,6 +95,12 @@ Window {
                             propertyName: "name"
                         }
                     }
+                }
+                Button {
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    text: 'Reset World'
+                    onClicked: model.setProperty(1, 'name', 'World')
                 }
             }
         }
