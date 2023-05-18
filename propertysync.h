@@ -30,7 +30,6 @@ private slots:
     void update();
 
 private:
-    bool m_updating = false;
     QObject *m_target = nullptr;
     QString m_propertyName;
     QQmlProperty m_propertyA;
